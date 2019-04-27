@@ -1,7 +1,9 @@
 import React from 'react';
+import {AsyncStorage} from 'react-native'
 import LoginScreen from './screens/LoginScreen'
 import HomeScreen from './screens/PageHome'
 import Test from './screens/Test'
+import Register from './screens/Register'
 import { StyleSheet, Text, View, FlatList,Image,SafeAreaView, ScrollView ,Dimensions} from 'react-native';
 
 import { createDrawerNavigator, createAppContainer, DrawerItems } from 'react-navigation';
@@ -13,7 +15,7 @@ import { Divider, ListItem, ListView , Subheader} from 'react-native-material-ui
 const Custom=(props)=>(
   <SafeAreaView style={{padding:50, alignContent:'center', alignItems:'center', flex:1}}>
   <ScrollView>
-  
+
   
         <Image
         style={{width:50, height:50}}
@@ -33,6 +35,7 @@ const Main = createDrawerNavigator(
   {
     Login: {screen:LoginScreen},
     Home: {screen:HomeScreen},
+    Register: {screen:Register},
     Test: {screen:Test},
   },
   {
@@ -52,6 +55,12 @@ const Root = createAppContainer(Main);
 
 
 export default class MyApp extends React.Component {
+  constructor(props){
+    super(props)
+
+    
+
+  }
   render() {
     return <Root/>;
   }

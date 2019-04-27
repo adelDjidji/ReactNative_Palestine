@@ -1,58 +1,40 @@
-import React from 'react';
-import { StyleSheet, Text, View, ToolbarAndroid,Image,TextInput, Button ,Alert} from 'react-native';
-import {Avatar ,IconToggle,ActionButton, Subheader,Toolbar } from 'react-native-material-ui';
+import React, { Component } from "react";
+import { Container, Header, Content, Picker, Form } from "native-base";
 
-import { Drawer } from 'react-native-material-ui';
-import Walo from './walo'
-
-export default class Test extends React.Component {
-    constructor(props){
-        super(props)
-    }
-    state = {  }
-    static navigationOptions = {
-        drawerLabel: Walo,
-      }
-
-    render() {
-        return(
-            <View>
-            <Drawer>
-              <Drawer.Header >
-                  <Drawer.Header.Account
-                      avatar={<Avatar text="A" />}
-                      accounts={[
-                          { avatar: <Avatar text="B" /> },
-                          { avatar: <Avatar text="C" /> },
-                      ]}
-                      footer={{
-                          dense: true,
-                          centerElement: {
-                              primaryText: 'Reservio',
-                              secondaryText: 'business@email.com',
-                          },
-                          rightElement: 'arrow-drop-down',
-                      }}
-                  />
-              </Drawer.Header>
-              <Drawer.Section
-                  divider
-                  items={[
-                      { icon: 'bookmark-border', value: 'Notifications' },
-                      { icon: 'today', value: 'Calendar', active: true },
-                      { icon: 'people', value: 'Clients' },
-                  ]}
-              />
-              <Drawer.Section
-                  title="Personal"
-                  items={[
-                      { icon: 'info', value: 'Info' },
-                      { icon: 'settings', value: 'Settings' },
-                  ]}
-              />
-            </Drawer>
-          </View>
-        )
-       
-    }
+export default class PickerExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "key1"
+    };
+  }
+  onValueChange(value: string) {
+    this.setState({
+      selected: value
+    });
+  }
+  render() {
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <Form>
+            <Picker
+              note
+              mode="dropdown"
+              style={{ width: 120 }}
+              selectedValue={this.state.selected}
+              onValueChange={this.onValueChange.bind(this)}
+            >
+              <Picker.Item label="Wallet" value="key0" />
+              <Picker.Item label="ATM Card" value="key1" />
+              <Picker.Item label="Debit Card" value="key2" />
+              <Picker.Item label="Credit Card" value="key3" />
+              <Picker.Item label="Net Banking" value="key4" />
+            </Picker>
+          </Form>
+        </Content>
+      </Container>
+    );
+  }
 }
